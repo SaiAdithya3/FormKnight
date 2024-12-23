@@ -9,7 +9,7 @@ import {
   RadioButton,
   SearchableDropdown,
   Form,
-} from "./index";
+} from "./components";
 
 const App: React.FC = () => {
   const handleSubmit = (formData: Record<string, any>) => {

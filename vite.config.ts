@@ -1,13 +1,28 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-swc';
+import dts from 'vite-plugin-dts';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import postcss from 'rollup-plugin-postcss';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    dts({
+      include: ['src/**/*.ts', 'src/**/*.tsx', 'index.ts'],
+      outDir: 'dist',
+      rollupTypes: true,
+    }),
+  ],
   build: {
     lib: {
-      entry: 'src/index.ts',
-      name: 'FormValidatorWidget',
-      fileName: (format) => `form-validator-widget.${format}.js`,
+      entry: path.resolve(__dirname, 'index.ts'),
+      formats: ['es', 'umd'],
+      name: 'FormX',
+      fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
@@ -17,6 +32,14 @@ export default defineConfig({
           'react-dom': 'ReactDOM',
         },
       },
+      plugins: [
+        postcss({
+          extract: false, 
+          inject: true,
+          minimize: true,
+        }),
+      ],
     },
+    cssCodeSplit: false,
   },
 });
