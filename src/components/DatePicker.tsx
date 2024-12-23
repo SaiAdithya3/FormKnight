@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { DatePickerProps } from "types";
 
 const months = [
   "January",
@@ -17,13 +18,9 @@ const months = [
 
 const weekdays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
-interface DatePickerProps {
-  name?: string;
-  value: string;
-  onChange: (value: string) => void;
-}
 
-const DatePicker: React.FC<DatePickerProps> = ({ name, value, onChange }) => {
+
+export const DatePicker: React.FC<DatePickerProps> = ({ name, value, onChange, label, required }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(
     value ? new Date(value) : null
   );
@@ -94,8 +91,12 @@ const DatePicker: React.FC<DatePickerProps> = ({ name, value, onChange }) => {
   }, []);
 
   return (
-    <div className="w-full max-w-xs mx-auto relative">
+    <div className="w-full mx-auto relative">
       {/* Input field to show the selected date */}
+      <label htmlFor={name} className="block font-medium mb-2 text-gray-700">
+        {label}
+        {required && <span className="text-red-500">*</span>}
+      </label>
       <div className="flex items-center bg-white border hover:ring-2 cursor-pointer border-gray-300 rounded-lg shadow shadow-gray-300 hover:shadow-lg hover:shadow-gray-200 transition-all ">
         <span className="p-2">
           <svg
@@ -144,7 +145,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ name, value, onChange }) => {
       {showCalendar && (
         <div
           id="calendar"
-          className="absolute z-10 bg-white shadow-lg p-4 border border-gray-300 rounded-xl mt-2"
+          className="absolute max-w-sm z-10 bg-white shadow-lg p-4 border border-gray-300 rounded-xl mt-2"
           style={{ width: "100%" }}
         >
           <div className="flex justify-between items-center mb-4">
@@ -212,4 +213,3 @@ const DatePicker: React.FC<DatePickerProps> = ({ name, value, onChange }) => {
   );
 };
 
-export default DatePicker;

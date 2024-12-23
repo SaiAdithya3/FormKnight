@@ -1,18 +1,18 @@
 import React from "react";
-import { Input } from "./components/Input";
-import { Dropdown } from "./components/Dropdown";
-import RadioButton from "./components/RadioButton";
-import DatePicker from "./components/DatePicker";
-import useFormData from "./hooks/useFormData";
-import { SearchableDropdown } from "./components/SearchableDropdown";
-import { PasswordField } from "./components/PasswordField";
-import FileUpload from "./components/FileUpload";
-import { Button } from "./components/Button";
+import {
+  Button,
+  DatePicker,
+  Dropdown,
+  FileUpload,
+  Input,
+  PasswordField,
+  RadioButton,
+  SearchableDropdown,
+  Form,
+} from "./components";
 
 const App: React.FC = () => {
-  const { formData, handleChange } = useFormData();
-
-  const handleClick = () => {
+  const handleSubmit = (formData: Record<string, any>) => {
     console.log("Form Submitted");
     console.log("Form Data:", formData);
   };
@@ -24,101 +24,87 @@ const App: React.FC = () => {
   ];
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen flex flex-col items-center space-y-6">
-      <h1 className="text-2xl font-bold">
-        FormKnight ⚔️
-      </h1>
-      <div className="w-1/2 flex flex-col gap-2">
-        {/* Date Picker */}
-        <DatePicker
-          name="date"
-          value={formData.date || ""}
-          onChange={(value) => handleChange("date", value)}
-        />
-
-        {/* Text Input */}
-        <Input
-          name="username"
-          label="Username"
-          type="text"
-          value={formData.username || ""}
-          onChange={(value) => handleChange("username", value)}
-          placeholder="Enter username"
-          // validationRules={{ minLength: 3, maxLength: 15 }}
-        />
-
-        <Input 
-          name="phone"
-          label="Phone Number"
-          type="number"
-          
-          value={formData.phone || ""}
-          onChange={(value) => handleChange("phone", value)}
-          validationRules={{ required: true }}
+    <div className="p-5 md:p-10 py-20 bg-gradient-to-r from-blue-100 to-cyan-100 min-h-screen flex flex-col items-center space-y-6">
+      <h1 className="text-4xl text-cyan-800 font-bold">Form Knight ⚔️</h1>
+      <div className="w-full md:w-1/2 max-w-xl flex flex-col gap-2">
+        <Form onSubmit={handleSubmit} className="bg-white rounded-xl shadow">
+          <DatePicker
+            name="date"
+            value=""
+            label="Date of Birth"
+            onChange={(value) => console.log(value)}
           />
 
-        <PasswordField
-          name="password"
-          label="Password"
-          value={formData.password || ""}
-          onChange={(value) => handleChange("password", value)}
-        />
+          <Input
+            name="username"
+            label="Username"
+            type="text"
+            value=""
+            placeholder="Enter username"
+            minLength={3}
+            maxLength={20}
+          />
 
-        {/* Email Input */}
-        <Input
-          name="email"
-          label="Email Address"
-          type="email"
-          value={formData.email || ""}
-          onChange={(value) => handleChange("email", value)}
-          validationRules={{ required: true, minLength: 5, maxLength: 50 }}
-        />
+          <Input
+            name="phone"
+            label="Phone Number"
+            type="number"
+            value=""
+            required
+          />
 
-        {/* Dropdown */}
-        <Dropdown
-          name="dropdown"
-          label="Dropdown"
-          options={[
-            { value: "option1", label: "Aegon targaryen" },
-            { value: "option2", label: "Daemon targaryen" },
-            { value: "option3", label: "Daenerys targaryen" },
-            { value: "option4", label: "Rhaenyra targaryen" },
-          ]}
-          value={formData.dropdown || ""}
-          onChange={(value) => handleChange("dropdown", value)}
-          validationRules={{ required: true }}
-        />
+          <PasswordField name="password" label="Password" value="" required />
 
-        <SearchableDropdown
-          label="Searchable Dropdown"
-          options={options}
-          value={formData.searchableDropdown || ""}
-          onChange={(value) => handleChange("searchableDropdown", value)}
-        />
+          <Input
+            name="email"
+            label="Email Address"
+            type="email"
+            value=""
+            required
+          />
 
-        {/* Radio Button */}
-        <RadioButton
-          name="myRadioGroup"
-          value={formData.myRadioGroup || ""}
-          options={options}
-          selectedValue={formData.myRadioGroup || ""}
-          onChange={(value) => handleChange("myRadioGroup", value)}
-        />
-        <FileUpload
-          name="customFile"
-          label="Upload a Document"
-          // onChange={handleFileChange}
-          onChange={(file) => handleChange("file", file)}
-          validationRules={{
-            required: true,
-            // allowedTypes: ["image/png", "image/jpeg", "application/pdf"],
-            maxSize: 5, // 5 MB
-          }}
-          className="border border-gray-300 p-4 rounded-lg bg-white shadow-md"
-        />
+          <Dropdown
+            name="dropdown"
+            label="Dropdown"
+            options={[
+              { value: "option1", label: "Aegon targaryen" },
+              { value: "option2", label: "Daemon targaryen" },
+              { value: "option3", label: "Daenerys targaryen" },
+              { value: "option4", label: "Rhaenyra targaryen" },
+            ]}
+            value=""
+            onChange={(value) => console.log(value)}
+            required
+          />
 
-        <Button label="Submit" type="submit" onClick={handleClick} />
+          <SearchableDropdown
+            label="Searchable Dropdown"
+            options={options}
+            value=""
+            onChange={(value) => console.log(value)}
+            required
+          />
 
+          <RadioButton
+            name="myRadioGroup"
+            label="Choose an Option"
+            options={options}
+            selectedValue=""
+            onChange={(value) => console.log(value)}
+          />
+
+          <FileUpload
+            name="customFile"
+            label="Upload a Document"
+            onChange={(file) => console.log(file)}
+            required
+            maxSize={5}
+            allowedTypes={["image/png", "image/jpeg", "application/pdf"]}
+            className="border border-gray-300 p-4 rounded-lg bg-white shadow-md"
+          />
+
+          <Button label="Submit" type="submit" />
+        </Form>
       </div>
     </div>
   );

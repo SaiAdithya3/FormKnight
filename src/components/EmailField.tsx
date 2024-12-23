@@ -1,10 +1,10 @@
 import React from "react";
 import { Input } from "./Input";
 
-export const EmailField: React.FC<{ value: string; onChange: (value: string) => void }> = ({
-  value,
-  onChange,
-}) => {
+export const EmailField: React.FC<{
+  value: string;
+  onChange: (value: string) => void;
+}> = ({ value, onChange }) => {
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -16,6 +16,7 @@ export const EmailField: React.FC<{ value: string; onChange: (value: string) => 
     <Input
       label="Email"
       type="email"
+      name="email"
       value={value}
       onChange={(val) => {
         onChange(val);
@@ -23,9 +24,6 @@ export const EmailField: React.FC<{ value: string; onChange: (value: string) => 
       }}
       placeholder="Enter your email"
       required
-      validationRules={{
-        required: true,
-      }}
     />
   );
 };

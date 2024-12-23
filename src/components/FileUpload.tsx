@@ -1,26 +1,16 @@
 import React, { useState } from "react";
 import clsx from "clsx";
+import { FileUploadProps } from "types";
 
-interface FileUploadProps {
-  label?: string;
-  name: string;
-  onChange: (file: File | null) => void;
-  validationRules?: {
-    required?: boolean;
-    allowedTypes?: string[];
-    maxSize?: number; // Size in MB
-  };
-  className?: string;
-  errorClassName?: string;
-}
-
-const FileUpload: React.FC<FileUploadProps> = ({
+export const FileUpload: React.FC<FileUploadProps> = ({
   label = "Upload File",
   name,
   onChange,
-  validationRules = {},
   className,
   errorClassName,
+  required,
+  allowedTypes,
+  maxSize,
 }) => {
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -33,7 +23,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
     }
 
     const selectedFile = event.target.files[0];
-    const { required, allowedTypes, maxSize } = validationRules;
+    // const { required, allowedTypes, maxSize } = validationRules;
 
     // Validation
     if (required && !selectedFile) {
@@ -61,13 +51,16 @@ const FileUpload: React.FC<FileUploadProps> = ({
     <div
       className={clsx("flex flex-col items-start w-full space-y-2", className)}
     >
-      {label && <label className="font-medium text-gray-700">{label}</label>}
+      <label className="font-medium text-gray-700">
+        {label}
+        {required && <span className="text-red-500"> *</span>}
+      </label>
 
       <div
         className={clsx(
           "flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all relative",
-          { "border-red-500": error, "border-gray-300": !error } ,
-          {"border-green-500 bg-green-200/50" : file, "" : !file}
+          { "border-red-500": error, "border-gray-300": !error },
+          { "border-green-500 bg-green-200/50": file, "": !file }
         )}
       >
         <input
@@ -127,5 +120,3 @@ const FileUpload: React.FC<FileUploadProps> = ({
     </div>
   );
 };
-
-export default FileUpload;

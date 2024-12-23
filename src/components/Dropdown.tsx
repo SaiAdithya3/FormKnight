@@ -1,16 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useValidation } from "../hooks/useValidation";
-
-interface DropdownProps {
-  name?: string;
-  label: string;
-  options: { value: string; label: string }[];
-  value: string;
-  onChange: (value: string) => void;
-  validationRules: {
-    required?: boolean;
-  };
-}
+import { DropdownProps } from "types";
 
 export const Dropdown: React.FC<DropdownProps> = ({
   name,
@@ -18,13 +8,13 @@ export const Dropdown: React.FC<DropdownProps> = ({
   options,
   value,
   onChange,
-  validationRules,
+  required,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [touched, setTouched] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  const error = useValidation(value, validationRules, "text", 800, touched);
+  const error = useValidation(value, { required }, "text", 800, touched);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -44,7 +34,10 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
   return (
     <div className="relative w-full space-y-2" ref={dropdownRef}>
-      <label className="block font-medium text-gray-700">{label}</label>
+      <label className="block font-medium text-gray-700">
+        {label}
+        {required && <span className="text-red-500">*</span>}
+      </label>
       <div
         className={`flex items-center bg-white justify-between w-full p-2 border rounded-lg shadow shadow-gray-300/50 hover:shadow-lg hover:shadow-gray-200 transition-all focus:outline-none cursor-pointer ${
           error ? "border-red-500" : "border-gray-300"

@@ -1,16 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDebounce } from "../hooks/useDebounce";
-
-interface SearchableDropdownProps {
-  label: string;
-  options: { value: string; label: string }[];
-  value: string;
-  onChange: (value: string) => void;
-  placeholder?: string;
-  validationRules?: {
-    required?: boolean;
-  };
-}
+import { SearchableDropdownProps } from "types";
 
 export const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
   label,
@@ -18,7 +8,7 @@ export const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
   value,
   onChange,
   placeholder = "Search...",
-  validationRules,
+  required,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false); 
@@ -71,7 +61,7 @@ export const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
   return (
     <div className="w-full space-y-2" ref={dropdownRef}>
       <label className="block font-medium text-gray-700">{label}
-        <span className="text-red-500">{validationRules?.required ? " *" : ""} </span>
+        <span className="text-red-500">{required ? " *" : ""} </span>
       </label>
 
       <div className="relative">

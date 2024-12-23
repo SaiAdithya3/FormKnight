@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES6",
     "module": "ESNext",
     "jsx": "react",
     "declaration": true,
@@ -14,7 +14,7 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "baseUrl": "./src",
-    "lib": ["es2016", "dom"],
+    "lib": ["es2024", "dom"],
     "paths": {
       "*": ["types/*"]
     }

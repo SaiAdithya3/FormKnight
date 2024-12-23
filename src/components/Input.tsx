@@ -1,23 +1,7 @@
 import React, { useState } from "react";
 import clsx from "clsx";
 import { useValidation } from "../hooks/useValidation";
-
-interface InputProps {
-  name: string;
-  label: string;
-  type: "text" | "email" | "password" | "number";
-  placeholder?: string;
-  value: string;
-  onChange: (value: string) => void;
-  required?: boolean;
-  validationRules?: {
-    required?: boolean;
-    minLength?: number;
-    maxLength?: number;
-    pattern?: RegExp;
-  };
-  className?: string;
-}
+import { InputProps } from "types";
 
 export const Input: React.FC<InputProps> = ({
   name,
@@ -26,8 +10,12 @@ export const Input: React.FC<InputProps> = ({
   placeholder,
   value,
   onChange,
-  validationRules = {},
   className,
+  pattern,
+  minLength,
+  maxLength,
+  required,
+
 }) => {
   const [touched, setTouched] = useState(false);
   const defaultPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -35,12 +23,14 @@ export const Input: React.FC<InputProps> = ({
   const finalPattern =
     type === "number"
       ? numberPattern
-      : validationRules.pattern || defaultPattern;
+      : pattern || defaultPattern;
 
   const error = useValidation(
     value,
     {
-      ...validationRules,
+      required,
+      minLength,
+      maxLength,
       pattern: finalPattern,
     },
     type,
@@ -56,7 +46,7 @@ export const Input: React.FC<InputProps> = ({
     <div className="w-full space-y-2">
       <label htmlFor={name} className="block font-medium text-gray-700">
         {label}
-        {validationRules.required && <span className="text-red-500"> *</span>}
+        {required && <span className="text-red-500"> *</span>}
       </label>
       <input
         id={name}
@@ -67,7 +57,7 @@ export const Input: React.FC<InputProps> = ({
         onChange={(e) => onChange(e.target.value)}
         onBlur={handleBlur}
         className={clsx(
-          "w-full p-2 border rounded",
+          "w-full p-2 border rounded-lg shadow shadow-gray-200/50 focus:outline-none",
           {
             "border-red-500": touched && error,
             "border-gray-300": !(touched && error),
