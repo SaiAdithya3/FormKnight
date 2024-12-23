@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { useValidation } from "../hooks/useValidation";
 import clsx from "clsx";
+import { useValidation } from "../hooks/useValidation";
 
 interface InputProps {
-  name?: string;
+  name: string;
   label: string;
-  type: "text" | "email" | "password";
+  type: "text" | "email" | "password" | "number";
   placeholder?: string;
   value: string;
   onChange: (value: string) => void;
   required?: boolean;
-  validationRules: {
+  validationRules?: {
     required?: boolean;
     minLength?: number;
     maxLength?: number;
@@ -26,12 +26,16 @@ export const Input: React.FC<InputProps> = ({
   placeholder,
   value,
   onChange,
-  validationRules,
+  validationRules = {},
   className,
 }) => {
   const [touched, setTouched] = useState(false);
   const defaultPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const finalPattern = validationRules.pattern || defaultPattern;
+  const numberPattern = /^[0-9]*$/;
+  const finalPattern =
+    type === "number"
+      ? numberPattern
+      : validationRules.pattern || defaultPattern;
 
   const error = useValidation(
     value,
@@ -50,12 +54,15 @@ export const Input: React.FC<InputProps> = ({
 
   return (
     <div className="w-full space-y-2">
-      <label className="block font-medium text-gray-700">{label}</label>
-      <div className="flex items-center gap-1"></div>
+      <label htmlFor={name} className="block font-medium text-gray-700">
+        {label}
+        {validationRules.required && <span className="text-red-500"> *</span>}
+      </label>
       <input
+        id={name}
         name={name}
         type={type}
-        placeholder={placeholder ? placeholder : `Enter ${name}`}
+        placeholder={placeholder || `Enter ${label}`}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onBlur={handleBlur}
@@ -67,9 +74,13 @@ export const Input: React.FC<InputProps> = ({
           },
           className
         )}
+        aria-invalid={touched && !!error}
+        aria-describedby={touched && error ? `${name}-error` : undefined}
       />
       {touched && error && (
-        <span className="text-red-500 text-sm">{error}</span>
+        <span id={`${name}-error`} className="text-red-500 text-sm">
+          {error}
+        </span>
       )}
     </div>
   );

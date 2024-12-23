@@ -12,7 +12,7 @@ interface ValidationRules {
 export const useValidation = (
   value: string,
   rules: ValidationRules,
-  inputType: "email" | "text" | "password" = "text",
+  inputType: "email" | "text" | "number" | "password" = "text" ,
   debounceDelay = 800,
   isTouched: boolean
 ) => {
@@ -51,7 +51,7 @@ export const useValidation = (
     setError(errorMessage);
 
     if (error !== errorMessage) {
-      toast.error(errorMessage);
+      // toast.error(errorMessage);
     }
   };
 

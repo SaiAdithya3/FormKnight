@@ -96,59 +96,59 @@ const DatePicker: React.FC<DatePickerProps> = ({ name, value, onChange }) => {
   return (
     <div className="w-full max-w-xs mx-auto relative">
       {/* Input field to show the selected date */}
-      <div className="flex items-center bg-white border border-gray-300 rounded-lg">
+      <div className="flex items-center bg-white border hover:ring-2 cursor-pointer border-gray-300 rounded-lg shadow shadow-gray-300 hover:shadow-lg hover:shadow-gray-200 transition-all ">
         <span className="p-2">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          className="lucide lucide-calendar-days"
-        >
-          <path d="M8 2v4" />
-          <path d="M16 2v4" />
-          <rect width="18" height="18" x="3" y="4" rx="2" />
-          <path d="M3 10h18" />
-          <path d="M8 14h.01" />
-          <path d="M12 14h.01" />
-          <path d="M16 14h.01" />
-          <path d="M8 18h.01" />
-          <path d="M12 18h.01" />
-          <path d="M16 18h.01" />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-calendar-days"
+          >
+            <path d="M8 2v4" />
+            <path d="M16 2v4" />
+            <rect width="18" height="18" x="3" y="4" rx="2" />
+            <path d="M3 10h18" />
+            <path d="M8 14h.01" />
+            <path d="M12 14h.01" />
+            <path d="M16 14h.01" />
+            <path d="M8 18h.01" />
+            <path d="M12 18h.01" />
+            <path d="M16 18h.01" />
+          </svg>
         </span>
-      <input
-        id="date-input"
-        name={name}
-        type="text"
-        value={
-          selectedDate
-            ? `${selectedDate.getDate()} ${
-                months[selectedDate.getMonth()]
-              } ${selectedDate.getFullYear()}`
-            : ""
-        }
-        onClick={handleInputClick}
-        readOnly
-        className="p-2 w-full cursor-pointer focus:outline-none rounded-lg"
-        placeholder="Select a date"
-      />
+        <input
+          id="date-input"
+          name={name}
+          type="text"
+          value={
+            selectedDate
+              ? `${selectedDate.getDate()} ${
+                  months[selectedDate.getMonth()]
+                } ${selectedDate.getFullYear()}`
+              : ""
+          }
+          onClick={handleInputClick}
+          readOnly
+          className="p-2  w-full cursor-pointer focus:outline-none rounded-lg"
+          placeholder="Select a date"
+        />
       </div>
 
       {/* Calendar Dropdown */}
       {showCalendar && (
         <div
           id="calendar"
-          className="absolute z-10 bg-white shadow-lg p-4 border rounded-xl mt-2"
+          className="absolute z-10 bg-white shadow-lg p-4 border border-gray-300 rounded-xl mt-2"
           style={{ width: "100%" }}
         >
           <div className="flex justify-between items-center mb-4">
-            <div className="flex items-center">
+            <div className="flex justify-between w-full items-center">
               <select
                 value={selectedMonth}
                 onChange={(e) => setSelectedMonth(Number(e.target.value))}

@@ -1,5 +1,4 @@
 import React from "react";
-import { toast } from "sonner";
 import { Input } from "./Input";
 
 export const EmailField: React.FC<{ value: string; onChange: (value: string) => void }> = ({
@@ -9,7 +8,7 @@ export const EmailField: React.FC<{ value: string; onChange: (value: string) => 
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      toast.error("Invalid email address");
+      // toast.error("Invalid email address");
     }
   };
 
@@ -24,7 +23,9 @@ export const EmailField: React.FC<{ value: string; onChange: (value: string) => 
       }}
       placeholder="Enter your email"
       required
-      errorMessage="Please enter a valid email"
+      validationRules={{
+        required: true,
+      }}
     />
   );
 };

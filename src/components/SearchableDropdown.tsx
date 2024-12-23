@@ -7,6 +7,9 @@ interface SearchableDropdownProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  validationRules?: {
+    required?: boolean;
+  };
 }
 
 export const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
@@ -15,6 +18,7 @@ export const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
   value,
   onChange,
   placeholder = "Search...",
+  validationRules,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false); 
@@ -58,15 +62,17 @@ export const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
     };
   }, []);
 
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isOpen]);
+  // useEffect(() => {
+  //   if (inputRef.current) {
+  //     inputRef.current.focus();
+  //   }
+  // }, [isOpen]);
 
   return (
     <div className="w-full space-y-2" ref={dropdownRef}>
-      <label className="block font-medium text-gray-700">{label}</label>
+      <label className="block font-medium text-gray-700">{label}
+        <span className="text-red-500">{validationRules?.required ? " *" : ""} </span>
+      </label>
 
       <div className="relative">
         <input
@@ -78,10 +84,10 @@ export const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
           onFocus={() => setIsOpen(true)} 
           onBlur={() => setTimeout(() => setIsOpen(false), 200)}
           onKeyDown={handleKeyDown}
-          className="w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className={`w-full p-2 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400`}
         />
         {isOpen && (
-          <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-lg max-h-60 overflow-y-auto">
+          <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
             {filteredOptions.length > 0 ? (
               filteredOptions.map((option, index) => (
                 <div
@@ -89,10 +95,10 @@ export const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
                   onClick={() => {
                     onChange(option.value);
                     setSearchTerm(option.label);
-                    setIsOpen(false); // Close the dropdown after selection
-                    setHighlightedIndex(-1); // Reset highlighted index
+                    setIsOpen(false); 
+                    setHighlightedIndex(-1); 
                   }}
-                  className={`cursor-pointer p-2 hover:bg-blue-100 ${
+                  className={`cursor-pointer p-2 hover:bg-blue-50 border-b border-blue-50/50 ${
                     index === highlightedIndex ? "bg-blue-200" : ""
                   }`}
                 >

@@ -1,6 +1,5 @@
 {
   "name": "form-valid",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -11,6 +10,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "garden-form-validator-test": "^1.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sonner": "^1.7.1"

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { toast } from "sonner";
 import { Input } from "./Input";
 
 export const PasswordField: React.FC<{
@@ -39,24 +38,26 @@ export const PasswordField: React.FC<{
 
   return (
     <div>
-      <div className="flex items-center gap-1 justify-center">
-        <Input
-          name="password"
-          label="Password"
-          type={isPasswordVisible ? "text" : "password"}
-          value={value}
-          onChange={(val) => {
-            onChange(val);
-            validatePassword(val);
-          }}
-          placeholder="Enter your password"
-          required
-          validationRules={{ required: true, minLength: 3, maxLength: 15 }}
-        />
+      <div className="flex items-center relative gap-2">
+        <div className="flex-grow">
+          <Input
+            name="password"
+            label="Password"
+            type={isPasswordVisible ? "text" : "password"}
+            value={value}
+            onChange={(val) => {
+              onChange(val);
+              validatePassword(val);
+            }}
+            placeholder="Enter your password"
+            required
+            validationRules={{ required: true, minLength: 3, maxLength: 15 }}
+          />
+        </div>
         <button
           type="button"
           onClick={togglePasswordVisibility}
-          className="text-black bg-white rounded-lg border border-gray-300 mt-2 flex items-center p-2 justify-center h-full hover:underline"
+          className="right-0 p-2 border  rounded-lg text-gray-600 bg-white"
         >
           {isPasswordVisible ? (
             <svg
@@ -66,9 +67,9 @@ export const PasswordField: React.FC<{
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               className="lucide lucide-eye-off"
             >
               <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
@@ -84,9 +85,9 @@ export const PasswordField: React.FC<{
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               className="lucide lucide-eye"
             >
               <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
@@ -95,17 +96,19 @@ export const PasswordField: React.FC<{
           )}
         </button>
       </div>
-      <div className="flex justify-between text-sm mt-2">
-        <div>
-          {errors.minLength && <p className="text-red-500">Min 8 characters</p>}
+      <div className="flex justify-between text-sm">
+        <div className="flex md:flex-row flex-col md:gap-3 w-full">
+          {errors.minLength && (
+            <p className="text-red-500">Min 8 characters &nbsp; |</p>
+          )}
           {errors.maxLength && (
-            <p className="text-red-500">Max 15 characters</p>
+            <p className="text-red-500">Max 15 characters &nbsp; |</p>
           )}
           {errors.hasNumber && (
-            <p className="text-red-500">Must contain a number</p>
+            <p className="text-red-500">Must contain a number &nbsp; |</p>
           )}
           {errors.hasLetter && (
-            <p className="text-red-500">Must contain a letter</p>
+            <p className="text-red-500">Must contain a letter &nbsp; |</p>
           )}
           {errors.hasSpecialChar && (
             <p className="text-red-500">Must contain a special character</p>

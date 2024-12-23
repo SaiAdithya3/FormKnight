@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Toaster } from "sonner";
+import React from "react";
 import { Input } from "./components/Input";
 import { Dropdown } from "./components/Dropdown";
 import RadioButton from "./components/RadioButton";
@@ -27,7 +26,7 @@ const App: React.FC = () => {
   return (
     <div className="p-6 bg-gray-100 min-h-screen flex flex-col items-center space-y-6">
       <h1 className="text-2xl font-bold">
-        Test Components with Debounced Validation
+        FormKnight ⚔️
       </h1>
       <div className="w-1/2 flex flex-col gap-2">
         {/* Date Picker */}
@@ -45,8 +44,18 @@ const App: React.FC = () => {
           value={formData.username || ""}
           onChange={(value) => handleChange("username", value)}
           placeholder="Enter username"
-          validationRules={{ required: true, minLength: 3, maxLength: 15 }}
+          // validationRules={{ minLength: 3, maxLength: 15 }}
         />
+
+        <Input 
+          name="phone"
+          label="Phone Number"
+          type="number"
+          
+          value={formData.phone || ""}
+          onChange={(value) => handleChange("phone", value)}
+          validationRules={{ required: true }}
+          />
 
         <PasswordField
           name="password"
@@ -70,20 +79,22 @@ const App: React.FC = () => {
           name="dropdown"
           label="Dropdown"
           options={[
-            { value: "option1", label: "Option 1" },
-            { value: "option2", label: "Option 2" },
+            { value: "option1", label: "Aegon targaryen" },
+            { value: "option2", label: "Daemon targaryen" },
+            { value: "option3", label: "Daenerys targaryen" },
+            { value: "option4", label: "Rhaenyra targaryen" },
           ]}
           value={formData.dropdown || ""}
           onChange={(value) => handleChange("dropdown", value)}
           validationRules={{ required: true }}
         />
 
-        {/* <SearchableDropdown
+        <SearchableDropdown
           label="Searchable Dropdown"
           options={options}
           value={formData.searchableDropdown || ""}
           onChange={(value) => handleChange("searchableDropdown", value)}
-        /> */}
+        />
 
         {/* Radio Button */}
         <RadioButton
@@ -108,7 +119,6 @@ const App: React.FC = () => {
 
         <Button label="Submit" type="submit" onClick={handleClick} />
 
-        <Toaster richColors position="top-center" />
       </div>
     </div>
   );
