@@ -1,5 +1,7 @@
 # FormKnight React
 
+Check here: https://www.npmjs.com/package/formknight-react
+
 FormKnight React is a reusable and customizable Form Validator Widget built using React and TypeScript. It provides advanced form validation, error handling, and customizable styles, making it easy to create and manage forms in your React applications.
 
 ## Features
