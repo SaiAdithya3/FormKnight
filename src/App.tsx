@@ -32,7 +32,7 @@ const App: React.FC = () => {
             name="date"
             value=""
             label="Date of Birth"
-            onChange={(value) => console.log(value)}
+            onChange={(value: string) => console.log(value)}
           />
 
           <Input
@@ -41,7 +41,7 @@ const App: React.FC = () => {
             type="text"
             value=""
             placeholder="Enter username"
-            onChange={(value) => console.log(value)}
+            onChange={(value: string) => console.log(value)}
             minLength={3}
             maxLength={20}
           />
@@ -50,7 +50,7 @@ const App: React.FC = () => {
             name="phone"
             label="Phone Number"
             type="number"
-            onChange={(value) => console.log(value)}
+            onChange={(value: string) => console.log(value)}
             value=""
             required
           />
@@ -68,7 +68,7 @@ const App: React.FC = () => {
             label="Email Address"
             type="email"
             value=""
-            onChange={(value) => console.log(value)}
+            onChange={(value: string) => console.log(value)}
             required
           />
 
@@ -82,7 +82,7 @@ const App: React.FC = () => {
               { value: "option4", label: "Rhaenyra targaryen" },
             ]}
             value=""
-            onChange={(value) => console.log(value)}
+            onChange={(value: string) => console.log(value)}
             required
           />
 
@@ -90,7 +90,7 @@ const App: React.FC = () => {
             label="Searchable Dropdown"
             options={options}
             value=""
-            onChange={(value) => console.log(value)}
+            onChange={(value: string) => console.log(value)}
             required
           />
 
@@ -99,13 +99,13 @@ const App: React.FC = () => {
             label="Choose an Option"
             options={options}
             selectedValue=""
-            onChange={(value) => console.log(value)}
+            onChange={(value: string) => console.log(value)}
           />
 
           <FileUpload
             name="customFile"
             label="Upload a Document"
-            onChange={(file) => console.log(file)}
+            onChange={(file: Object) => console.log(file)}
             required
             maxSize={5}
             allowedTypes={["image/png", "image/jpeg", "application/pdf"]}
