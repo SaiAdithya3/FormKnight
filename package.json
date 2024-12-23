@@ -6,10 +6,6 @@
   "types": "dist/index.d.ts",
   "author": "Sai Adithya",
   "description": "A reusable and customizable Form Validator Widget using React and TypeScript.",
-  "files": [
-    "dist",
-    "Readme.md"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/SaiAdithya3/FormKnight"

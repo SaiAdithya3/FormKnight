@@ -1,9 +1,0 @@
-node_modules
-dist
-src
-.vscode
-.idea
-.DS_Store
-*.log
-src/main.tsx
-src/App.tsx
