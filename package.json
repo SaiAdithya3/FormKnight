@@ -1,7 +1,7 @@
 {
   "name": "formknight-react",
   "version": "1.0.1",
- "main": "dist/index.js",
+  "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "author": "Sai Adithya",
@@ -29,7 +29,6 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "prepublishOnly": "npm run build",
     "preview": "vite preview"
   },
   "dependencies": {
