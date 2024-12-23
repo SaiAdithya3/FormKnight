@@ -38,7 +38,7 @@ export interface InputProps {
   type: "text" | "email" | "password" | "number";
   placeholder?: string;
   value: string;
-  onChange?: (value: string) => void;
+  onChange: (value: string) => void;
   required?: boolean;
   minLength?: number;
   maxLength?: number;

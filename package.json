@@ -1,20 +1,41 @@
 {
-  "name": "form-valid",
-  "version": "0.0.0",
-  "type": "module",
+  "name": "formknight-react",
+  "version": "1.0.1",
+ "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "author": "Sai Adithya",
+  "description": "A reusable and customizable Form Validator Widget using React and TypeScript.",
+  "files": [
+    "dist",
+    "Readme.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SaiAdithya3/FormKnight"
+  },
+  "url": "",
+  "keywords": [
+    "form",
+    "validator",
+    "components",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "cusotm-components",
+    "customizable"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "prepublishOnly": "npm run build",
     "preview": "vite preview"
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "garden-form-validator-test": "^1.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-magic-input": "^1.0.8",
-    "sonner": "^1.7.1",
     "tailwind-merge": "^2.5.5"
   },
   "devDependencies": {

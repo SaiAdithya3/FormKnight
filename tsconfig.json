@@ -1,24 +1,18 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "ESNext",
+    "target": "ESNext",
+    "module": "commonjs",
+    "lib": ["dom", "es2017", "ESNext"],
     "jsx": "react",
-    "declaration": true,
-    "declarationDir": "dist/types",
-    "outDir": "dist",
     "moduleResolution": "node",
-    "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "allowImportingTsExtensions": true,
     "noEmit": true,
-    "baseUrl": "./src",
-    "lib": ["es2024", "dom"],
-    "paths": {
-      "*": ["types/*"]
-    }
+    "strict": true,
+    "declaration": true,
+    "outDir": "dist",
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src"]
 }

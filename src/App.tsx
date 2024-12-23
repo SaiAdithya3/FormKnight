@@ -9,7 +9,7 @@ import {
   RadioButton,
   SearchableDropdown,
   Form,
-} from "./components";
+} from "./index";
 
 const App: React.FC = () => {
   const handleSubmit = (formData: Record<string, any>) => {
@@ -41,6 +41,7 @@ const App: React.FC = () => {
             type="text"
             value=""
             placeholder="Enter username"
+            onChange={(value) => console.log(value)}
             minLength={3}
             maxLength={20}
           />
@@ -49,17 +50,25 @@ const App: React.FC = () => {
             name="phone"
             label="Phone Number"
             type="number"
+            onChange={(value) => console.log(value)}
             value=""
             required
           />
 
-          <PasswordField name="password" label="Password" value="" required />
+          <PasswordField
+            name="password"
+            label="Password"
+            value=""
+            required
+            onChange={(value) => console.log(value)}
+          />
 
           <Input
             name="email"
             label="Email Address"
             type="email"
             value=""
+            onChange={(value) => console.log(value)}
             required
           />
 
