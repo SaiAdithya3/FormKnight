@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDebounce } from "../hooks/useDebounce";
-import { SearchableDropdownProps } from "types";
+import { SearchableDropdownProps } from "../types/types";
 
 export const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
   label,

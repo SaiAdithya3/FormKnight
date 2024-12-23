@@ -60,7 +60,7 @@ const App: React.FC = () => {
             label="Password"
             value=""
             required
-            onChange={(value) => console.log(value)}
+            onChange={(value: string) => console.log(value)}
           />
 
           <Input
@@ -105,7 +105,7 @@ const App: React.FC = () => {
           <FileUpload
             name="customFile"
             label="Upload a Document"
-            onChange={(file: Object) => console.log(file)}
+            onChange={(file) => console.log(file)}
             required
             maxSize={5}
             allowedTypes={["image/png", "image/jpeg", "application/pdf"]}

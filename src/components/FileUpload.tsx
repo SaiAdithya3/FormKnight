@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import clsx from "clsx";
-import { FileUploadProps } from "types";
+import { FileUploadProps } from "../types/types";
 
 export const FileUpload: React.FC<FileUploadProps> = ({
   label = "Upload File",

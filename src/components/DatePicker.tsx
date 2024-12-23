@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { DatePickerProps } from "types";
+import { DatePickerProps } from "../types/types";
 
 const months = [
   "January",

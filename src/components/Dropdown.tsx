@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useValidation } from "../hooks/useValidation";
-import { DropdownProps } from "types";
+import { DropdownProps } from "../types/types";
 
 export const Dropdown: React.FC<DropdownProps> = ({
   name,

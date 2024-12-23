@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import clsx from "clsx";
 import { useValidation } from "../hooks/useValidation";
-import { InputProps } from "types";
+import { InputProps } from "../types/types";
 
 export const Input: React.FC<InputProps> = ({
   name,
