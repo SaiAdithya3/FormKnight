@@ -40,7 +40,7 @@ const Form: React.FC<FormProps> = ({
           newErrors[name] = `${label || name} is required`;
         }
       } else {
-        console.log("Cannot submit form. Please check the form fields.");
+        console.log("Cannot submit form : ",errors)
       }
     });
 

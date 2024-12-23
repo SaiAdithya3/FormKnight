@@ -91,7 +91,6 @@ const App: React.FC = () => {
             options={options}
             value=""
             onChange={(value: string) => console.log(value)}
-            required
           />
 
           <RadioButton
