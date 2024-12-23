@@ -9,6 +9,8 @@
       "declarationDir": "./dist/types",
       "outDir": "./dist",
       "esModuleInterop": true,
+      "allowImportingTsExtensions" : true,
+      "noEmit": true,
       "skipLibCheck": true,
       "strict": true
   },
