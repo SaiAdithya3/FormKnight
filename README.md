@@ -24,6 +24,12 @@ yarn add formknight-react
 ```
 
 ## Usage
+
+Before using include this CSS file in order to render the styling of the components
+```bash
+  import '/node_modules/formknight-react/dist/formknight-react.css'
+```
+
 Here's an example of how to use the FormKnight React components in your application:
 
 ```tsx
